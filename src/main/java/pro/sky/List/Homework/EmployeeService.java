@@ -2,17 +2,26 @@ package pro.sky.List.Homework;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class EmployeeService {
-    private Map<String, Employee> employeesMap;
-    private final int MAX_EMPLOYEES = 5;
+    private Map<String, Employee> employeesMap = new HashMap<>(Map.of(
+            "Милана Малышева", new Employee("Милана", "Малышева"),
+            "Михаил Агеев", new Employee("Михаил", "Агеев"),
+            "Елизавета Ларионова", new Employee("Елизавета", "Ларионова"),
+            "Максим Андреев", new Employee("Максим", "Андреев"),
+            "Каролина Пахомова", new Employee("Каролина", "Пахомова"),
+            "Александр Смирнов", new Employee("Александр", "Смирнов"),
+            "Максим Крючков", new Employee("Максим", "Крючков")
 
-    public EmployeeService(Map<String, Employee> employeesMap) {
-        this.employeesMap = employeesMap;
-    }
+    ));
+
+    private final int MAX_EMPLOYEES = 10;
+
+//    public EmployeeService(Map<String, Employee> employeesMap) {
+//        this.employeesMap = employeesMap;
+//    }
 
     public Employee add(String firstName, String lastName)
             throws EmployeeStorageIsFullException, EmployeeAlreadyAddedException {

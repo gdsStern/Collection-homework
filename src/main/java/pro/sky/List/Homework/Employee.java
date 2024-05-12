@@ -1,15 +1,24 @@
 package pro.sky.List.Homework;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Objects;
+import java.util.Random;
 
 public class Employee {
     private String firstName;
     private String lastName;
 
+    private int salary;
+    private int departmentID;
+
 
     public Employee(String firstName, String lastName) {
+        Random random = new Random();
         this.firstName = firstName;
         this.lastName = lastName;
+        salary = random.nextInt(10000)+5000;
+        departmentID = random.nextInt(5)+1;
     }
 
 //    public Employee() {
@@ -32,6 +41,23 @@ public class Employee {
         this.lastName = lastName;
     }
 
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public int getDepartmentID() {
+        return departmentID;
+    }
+
+    public void setDepartmentID(int departmentID) {
+        this.departmentID = departmentID;
+    }
+
+    @JsonIgnore
     public String getKey() {
         return firstName + " " + lastName;
     }

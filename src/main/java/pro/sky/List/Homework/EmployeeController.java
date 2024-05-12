@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/employee")
@@ -19,6 +20,9 @@ public class EmployeeController {
     @GetMapping("/add")
     public Employee add(@RequestParam(required = false) String firstName,
                         @RequestParam(required = false) String lastName) {
+        if (firstName == null || lastName == null || firstName.isEmpty() || lastName.isEmpty()) {
+            throw new EmployeeAlreadyAddedException();
+        }
         return employeeService.add(firstName, lastName);
     }
 
