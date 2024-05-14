@@ -13,12 +13,12 @@ public class Employee {
     private int departmentID;
 
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, int departmentID, int salary) {
         Random random = new Random();
         this.firstName = firstName;
         this.lastName = lastName;
-        salary = random.nextInt(10000)+5000;
-        departmentID = random.nextInt(5)+1;
+        this.salary = salary;
+        this.departmentID = departmentID;
     }
 
 //    public Employee() {
@@ -58,7 +58,7 @@ public class Employee {
     }
 
     @JsonIgnore
-    public String getKey() {
+    public static String getKey(String firstName, String lastName) {
         return firstName + " " + lastName;
     }
 

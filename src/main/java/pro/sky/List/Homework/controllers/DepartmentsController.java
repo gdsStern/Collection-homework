@@ -1,9 +1,12 @@
-package pro.sky.List.Homework;
+package pro.sky.List.Homework.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.List.Homework.exceptions.EmployeeNotFoundException;
+import pro.sky.List.Homework.services.DepartmentsService;
+import pro.sky.List.Homework.Employee;
 
 import java.util.Collection;
 import java.util.List;
@@ -19,26 +22,17 @@ public class DepartmentsController {
     }
 
     @GetMapping("/max-salary")
-    public Employee max(@RequestParam(required = false) int departmentID) {
-        if (departmentID  == 0) {
-            throw new EmployeeAlreadyAddedException();
-        }
+    public Employee max(@RequestParam int departmentID) {
         return departmentsService.maxSalary(departmentID);
     }
 
     @GetMapping("/min-salary")
-    public Employee min(@RequestParam(required = false) int departmentID) {
-        if (departmentID  == 0) {
-            throw new EmployeeAlreadyAddedException();
-        }
+    public Employee min(@RequestParam int departmentID) {
         return departmentsService.minSalary(departmentID);
     }
 
     @GetMapping(value = "/all", params = {"departmentID"})
-    public Collection<Employee> all(@RequestParam(required = false) int departmentID) {
-        if (departmentID  == 0) {
-            throw new EmployeeAlreadyAddedException();
-        }
+    public Collection<Employee> all(@RequestParam int departmentID) {
         return departmentsService.employeesByDepartments(departmentID);
     }
 

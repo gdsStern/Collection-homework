@@ -1,6 +1,8 @@
-package pro.sky.List.Homework;
+package pro.sky.List.Homework.services;
 
 import org.springframework.stereotype.Service;
+import pro.sky.List.Homework.Employee;
+import pro.sky.List.Homework.exceptions.EmployeeNotFoundException;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -14,7 +16,7 @@ import static java.util.stream.Collectors.groupingBy;
 public class DepartmentsService {
     private final EmployeeService employeeService;
 
-    public DepartmentsService(DepartmentsService departmentsService, EmployeeService employeeService) {
+    public DepartmentsService(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
