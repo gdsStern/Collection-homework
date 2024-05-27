@@ -1,9 +1,13 @@
-package pro.sky.List.Homework;
+package pro.sky.List.Homework.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.List.Homework.Employee;
+import pro.sky.List.Homework.exceptions.EmployeeAlreadyAddedException;
+import pro.sky.List.Homework.exceptions.EmployeeNotFoundException;
+import pro.sky.List.Homework.services.EmployeeService;
 
 import java.util.Collection;
 
@@ -17,9 +21,11 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public Employee add(@RequestParam(required = false) String firstName,
-                        @RequestParam(required = false) String lastName) {
-        return employeeService.add(firstName, lastName);
+    public Employee add(@RequestParam String firstName,
+                        @RequestParam String lastName,
+                        @RequestParam int departmentID,
+                        @RequestParam int salary) {
+        return employeeService.add(firstName, lastName, departmentID, salary);
     }
 
     @GetMapping("/remove")
