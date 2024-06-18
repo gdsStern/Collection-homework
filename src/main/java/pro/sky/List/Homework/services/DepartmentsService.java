@@ -14,30 +14,39 @@ import static java.util.stream.Collectors.groupingBy;
 
 @Service
 public class DepartmentsService {
-    private final EmployeeService employeeService;
+    private final EmployeeService employeeService = new EmployeeService();
 
-    public DepartmentsService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
+//    public DepartmentsService(EmployeeService employeeService) {
+//        this.employeeService = employeeService;
+//    }
 
-    public Employee maxSalary(int departmentsID) {
+    public Integer maxSalary(int departmentID) {
         return employeeService.print().stream()
-                .filter(e -> e.getDepartmentID() == departmentsID)
+                .filter(e -> e.getDepartmentID() == departmentID)
                 .max(Comparator.comparingInt(employee -> employee.getSalary()))
+                .map(Employee::getSalary)
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
-    public Employee minSalary(int departmentsID) {
+    public Integer minSalary(int departmentsID) {
         return employeeService.print().stream()
                 .filter(e -> e.getDepartmentID() == departmentsID)
                 .min(Comparator.comparingInt(employee -> employee.getSalary()))
+                .map(Employee::getSalary)
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
-    public Collection<Employee> employeesByDepartments(int departmentsID) {
+    public Collection<Employee> employeesByDepartments(int departmentID) {
         return employeeService.print().stream()
-                .filter(e -> e.getDepartmentID() == departmentsID)
+                .filter(e -> e.getDepartmentID() == departmentID)
                 .collect(Collectors.toList());
+    }
+
+    public int sumSalary(int departmentID) {
+        return employeeService.print().stream()
+                .filter(e -> e.getDepartmentID() == departmentID)
+                .map(Employee::getSalary)
+                .reduce(0,Integer::sum);
     }
 
     public Map<Integer, List<Employee>> groupEmployees() {

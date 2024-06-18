@@ -22,11 +22,11 @@ public class EmployeeService {
     ));
 
     private final int maxEmployees = 10;
-    private final ValidationService validationService;
+    private final ValidationService validationService = new ValidationService();
 
-    public EmployeeService(ValidationService validationService) {
-        this.validationService = validationService;
-    }
+//    public EmployeeService(ValidationService validationService) {
+//        this.validationService = validationService;
+//    }
 
 
 //    public EmployeeService(Map<String, Employee> employeesMap) {
