@@ -58,7 +58,7 @@ public class DepartmentsServiceTest {
         assertThat(departmentsService.sumSalary(6))
                 .isEqualTo(0);
     }
-
+//
     @Test
     void findMaxSalaryTest() {
         assertThat(departmentsService.maxSalary(1))
