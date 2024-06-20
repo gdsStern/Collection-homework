@@ -14,11 +14,11 @@ import static java.util.stream.Collectors.groupingBy;
 
 @Service
 public class DepartmentsService {
-    private final EmployeeService employeeService = new EmployeeService();
+    private final EmployeeService employeeService;
 
-//    public DepartmentsService(EmployeeService employeeService) {
-//        this.employeeService = employeeService;
-//    }
+    public DepartmentsService(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     public Integer maxSalary(int departmentID) {
         return employeeService.print().stream()

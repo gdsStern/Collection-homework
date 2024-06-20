@@ -11,6 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pro.sky.List.Homework.exceptions.EmployeeNotFoundException;
 import pro.sky.List.Homework.services.DepartmentsService;
 import pro.sky.List.Homework.services.EmployeeService;
+import pro.sky.List.Homework.services.ValidationService;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import java.util.List;
@@ -21,10 +23,10 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class DepartmentsServiceTest {
     @Mock
-    private EmployeeService employeeService = new EmployeeService();
+    private EmployeeService employeeService;
 
     @InjectMocks
-    private DepartmentsService departmentsService = new DepartmentsService();
+    private DepartmentsService departmentsService;
 
     List<Employee> employees = List.of(
             new Employee("Милана", "Малышева", 1, 34281),
@@ -50,8 +52,8 @@ public class DepartmentsServiceTest {
     }
     @Test
     void sumTest() {
-        assertThat(departmentsService.sumSalary(1))
-                .isEqualTo(34281);
+        assertThat(departmentsService.sumSalary(2))
+                .isEqualTo(87013);
     }
     @Test
     void sumNegativeTest() {
@@ -61,8 +63,8 @@ public class DepartmentsServiceTest {
 //
     @Test
     void findMaxSalaryTest() {
-        assertThat(departmentsService.maxSalary(1))
-                .isEqualTo(34281);
+        assertThat(departmentsService.maxSalary(2))
+                .isEqualTo(49693);
     }
 
     @Test
@@ -72,8 +74,8 @@ public class DepartmentsServiceTest {
     }
     @Test
     void findMinSalaryTest() {
-        assertThat(departmentsService.minSalary(1))
-                .isEqualTo(34281);
+        assertThat(departmentsService.minSalary(2))
+                .isEqualTo(37320);
     }
 
     @Test

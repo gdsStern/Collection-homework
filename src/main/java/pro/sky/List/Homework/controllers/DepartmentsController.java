@@ -19,18 +19,18 @@ public class DepartmentsController {
     }
 
     @GetMapping("/{id}/salary/max")
-    public Integer max(@RequestParam int departmentID) {
+    public Integer max(@PathVariable("id") int departmentID) {
         return departmentsService.maxSalary(departmentID);
     }
 
     @GetMapping("/{id}/salary/min")
     public Integer min(@PathVariable("id") int departmentID) {
-        return departmentsService.sumSalary(departmentID);
+        return departmentsService.minSalary(departmentID);
     }
 
     @GetMapping("/{id}/salary/sum")
     public Integer sum(@PathVariable("id") int departmentID) {
-        return departmentsService.minSalary(departmentID);
+        return departmentsService.sumSalary(departmentID);
     }
 
     @GetMapping("/{id}/employees")
